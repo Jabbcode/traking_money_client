@@ -24,7 +24,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <h1>Home</h1>
+    <h2>Account</h2>
 </template>
 
 <style></style>

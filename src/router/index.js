@@ -7,27 +7,42 @@ const routes = [
         redirect: '/login'
     },
     {
-        name: 'Login',
         path: '/login',
+        name: 'Login',
+        component: () => import('../modules/auth/views/login/Login.vue'),
+        meta: { title: 'Login' },
         beforeEnter: [isAuthenticated],
-        component: () => import('../modules/auth/views/login/Login.vue')
     },
     {
-        name: 'Register',
         path: '/register',
+        name: 'Register',
+        component: () => import('../modules/auth/views/register/Register.vue'),
+        meta: { title: 'Register' },
         beforeEnter: [isAuthenticated],
-        component: () => import('../modules/auth/views/register/Register.vue')
     },
     {
-        path: '/home',
+        path: '/',
         component: () => import('../layouts/Dashboard.vue'),
         beforeEnter: [isAuthenticatedGuard],
         children: [
             {
-                name: 'Home',
                 path: '',
-                component: () => import('../modules/home/Home.vue'),
-            }
+                name: 'Account',
+                meta: { title: 'Traking Money - Account' },
+                component: () => import('../modules/account/Account.vue'),
+            },
+            {
+                path: 'movements',
+                name: 'Movements',
+                meta: { title: 'Traking Money - Movements' },
+                component: () => import('../modules/movements/Movements.vue'),
+            },
+            {
+                path: 'profile',
+                name: 'Profile',
+                meta: { title: 'Traking Money - Profile' },
+                component: () => import('../modules/profile/Profile.vue'),
+            },
         ]
     },
     {
@@ -43,5 +58,10 @@ const router = createRouter({
     history,
     routes
 });
+
+router.beforeEach((to, from, next) => {
+    document.title = to.meta.title || 'Traking Money'
+    next()
+})
 
 export default router;

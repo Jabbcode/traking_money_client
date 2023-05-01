@@ -21,7 +21,7 @@ const onSubmit = async () => {
     await onRegister(form.value);
     
     if (authStatus.value === 'Authenticated') {
-        router.push({ name: 'Home' });
+        router.push({ name: 'Account' });
     }
 };
 

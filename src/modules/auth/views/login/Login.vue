@@ -22,7 +22,7 @@ const onSubmit = async () => {
     await onLogin(form.value);
 
     if (authStatus.value === 'Authenticated') {
-        router.push({ name: 'Home' });
+        router.push({ name: 'Account' });
     }
 };
 

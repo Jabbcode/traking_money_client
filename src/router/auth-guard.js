@@ -12,7 +12,7 @@ export const isAuthenticated = async (to, from, next) => {
     const resp = await store.dispatch('auth/onVerifyToken');
 
     if ((to.name === 'Login' || to.name === 'Register') && resp === 'Authenticated') {
-        next({ name: 'Home' })
+        next({ name: 'Account' })
     }
     next()
 }
